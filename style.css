@@ -1,0 +1,38 @@
+/* Animation when site is loaded */
+@keyframes fadein {
+    0% {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Make the whole site not clickable */
+* {
+    pointer-events: none;
+    user-select: none;
+}
+
+html,
+body {
+    background: var(--background);
+    font-family: 'Open Sans', sans-serif;
+    height: 100%;
+    margin: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 0;
+    pointer-events: auto;
+}
+
+/* Use the fadein animation */
+footer,
+header,
+main {
+    animation: fadein 1s ease-out .5s forwards;
+    opacity: 0;
+}
