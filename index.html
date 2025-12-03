@@ -1,49 +1,76 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="LinkLoom">
-  <title></title>
-  <!-- Load all CSS files -->
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" as="style"
-    onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap">
-  <link rel="preload" href="https://use.fontawesome.com/releases/v6.6.0/css/all.css" as="style"
-    onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.6.0/css/all.css">
-  <link rel="stylesheet" href="style.css">
-  <!-- Load scripts needed for this website -->
-  <script defer src="scripts/links.js"></script>
-  <script defer src="scripts/meta.js"></script>
-  <script type="module" defer src="scripts/theme.js"></script>
-</head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Átomos Dispersos</title>
+    <link rel="stylesheet" href="styles.css"> </head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/custom.css" rel="stylesheet">
 <body>
-  <!-- Animated background -->
-  <div id="wallpapers"></div>
-  <header>
-    <!-- Warning for NoScript users -->
-    <noscript>
-      <div style="padding: 2em; text-align: center; background: #fdd; color: #900; font-family: sans-serif;">
-        ⚠️ This site requires CSS / JavaScript to function. Please enable CSS / JavaScript in your browser.
-      </div>
-    </noscript>
-    <!-- Load the picture -->
-    <div id="picture"></div>
-    <!-- Load the name & about section -->
-    <div id="name"></div>
-    <div id="about"></div>
-  </header>
-  <main>
-    <!-- Load the links -->
-    <nav id="links"></nav>
-  </main>
-  <footer>
-    <!-- Credits -->
-    <div id="credits"></div>
-  </footer>
-</body>
 
+    <div class="ctr">
+
+        <header class="dark-header">
+            <div class="profile-area">
+                <img src="sources/logo.png" class="profile-pic-container">
+            </div>
+        </header>
+
+        
+        <div class="titulo">ÁTOMOS DISPERSOS</div>
+        <div class="welcome-title">Juanjo H. Beltrán & Beta Argoytia</div>
+
+
+        <main class="links-section">
+
+            
+
+            <a class="link-card">
+                <div class="link-text">
+                    <h3>Biografía</h3>
+                    <p>
+                        Átomos Dispersos es proyecto musical independiente, iniciado en 2023 en Monterrey, Nuevo León, por Beta Argoytia (compositora y vocalista)
+                        y Juanjo Beltrán (compositor, arreglista y guitarrista), quienes se conocieron en el Tec
+                        de Monterrey. Influenciados por artistas y bandas como Radiohead, Mitski, The Beatles, Zoé,
+                        Miss Caffeina, entre otros, su música presenta letras personales y emocionales que se sirven de la instrumentación para tocar la mente y 
+                        corazón de quien escucha.
+                    </p>
+                </div>
+            </a>
+
+            <a href="https://juanjo-bltrn.github.io/mariposas-blancas/GitHub%20Player/index.html" class="link-card">
+                <div class="link-image" style="background-image: url('sources/artwork-mb.jpg');"></div>
+                <div class="link-text">
+                    <h3>Mariposas Blancas (Próximamente)</h3>
+                    <p>Primer lanzamiento orginal. EP con siete canciones compuestas durante el 2024 y principios de 2025. Aún en producción.</p>
+                </div>
+            </a>
+            
+            <a href="https://soundcloud.com/betabel/sets/four-mitski-covers" class="link-card">
+                <div class="link-image" style="background-image: url('sources/artwork-fmc.jpg');"></div>
+                <div class="link-text">
+                    <h3>Four Mitski Covers (2024)</h3>
+                    <p>Pequeño EP con covers de Mitski, grabados el 17 de enero de 2024 en la sala de Beta, en un pequeño home studio improvisado.</p>
+                </div>
+            </a>
+            
+        </main>
+
+        <div style="text-align: center;">
+            <a href="https://www.instagram.com/betabel.music/" class="fa fa-instagram" style="font-size:20px;"></a>
+            <a href="https://www.instagram.com/betabel.music/" class="fa fa-youtube" style="font-size:20px;"></a>
+            <a href="https://soundcloud.com/betabel" class="fa fa-soundcloud" style="font-size:20px;"></a>
+            <a href="mailto:atomos.dispersos@outlook.com?Subject=Contacto" class="fa fa-paper-plane" style="font-size:20px;"></a>
+        </div>
+        
+    </div>
+
+</body>
 </html>
