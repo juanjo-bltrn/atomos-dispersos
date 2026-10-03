@@ -17,15 +17,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
-  <!-- Playlist Script CDN -->
-  <link href="https://fonts.cdnfonts.com/css/playlist-script" rel="stylesheet">
-
   <script>
     tailwind.config = {
       theme: {
         extend: {
           fontFamily: {
-            playlist: ['"Playlist Script"', 'Caveat', 'Dancing Script', 'cursive'],
+            playlist: ['"playlist-script"', 'Caveat', 'Dancing Script', 'cursive'],
             serif: ['Cormorant Garamond', 'Georgia', 'serif'],
             mono: ['Courier Prime', 'monospace'],
             sans: ['Inter', 'sans-serif'],
@@ -60,7 +57,14 @@
     }
   </script>
 
+
   <style>
+    @font-face {
+      font-family: 'playlist-script';
+      src: url('fonts/playlist-script.ttf') format('truetype');
+    }
+
+
     /* Vintage Paper Background & Grain */
     body {
       background-color: #f5efe3;
@@ -127,7 +131,7 @@
 
     /* Title Font Override */
     .band-title {
-      font-family: 'Playlist Script', 'Caveat', 'Alex Brush', cursive;
+      font-family: 'playlist-script', 'Caveat', 'Alex Brush', cursive;
     }
 
     /* Custom Scrollbar */
