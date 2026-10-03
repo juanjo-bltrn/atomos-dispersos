@@ -1,121 +1,634 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Átomos Dispersos</title>
-    <link rel="stylesheet" href="styles.css"> </head>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Átomos Dispersos</title>
+  <link rel="icon" sizes="64x64" href="sources/site-logo.png">
 
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
+  <!-- Font Awesome 6 for Brand Icons (Spotify, Apple, YouTube, Bandcamp, etc.) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/custom.css" rel="stylesheet">
+  <!-- Google Fonts & CDN Fonts for Playlist Script -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Playlist Script CDN -->
+  <link href="https://fonts.cdnfonts.com/css/playlist-script" rel="stylesheet">
 
-      <link rel="icon" sizes="64x64" href="sources/site-logo.png">
-<body>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            playlist: ['"Playlist Script"', 'Caveat', 'Dancing Script', 'cursive'],
+            serif: ['Cormorant Garamond', 'Georgia', 'serif'],
+            mono: ['Courier Prime', 'monospace'],
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            parchment: {
+              50: '#fcfaf6',
+              100: '#f5efe3',
+              200: '#e8decb',
+              300: '#d8c7a8',
+              400: '#c2ab82',
+            },
+            ink: {
+              900: '#15111d',
+              800: '#221b30',
+              700: '#322846',
+              600: '#483a63',
+            },
+            violetaccent: {
+              400: '#c084fc',
+              500: '#a855f7',
+              600: '#8b5cf6',
+              700: '#7e22ce',
+              800: '#6b21a8',
+              900: '#4c1d95',
+            },
+            lavender: '#e9d5ff',
+            botanical: '#2d3b32'
+          }
+        }
+      }
+    }
+  </script>
 
-    <div class="ctr">
+  <style>
+    /* Vintage Paper Background & Grain */
+    body {
+      background-color: #f5efe3;
+      color: #15111d;
+      font-family: 'Cormorant Garamond', serif;
+      background-image: 
+        radial-gradient(rgba(107, 33, 168, 0.05) 1px, transparent 0),
+        linear-gradient(to right, rgba(21, 17, 29, 0.02) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(21, 17, 29, 0.02) 1px, transparent 1px);
+      background-size: 20px 20px, 36px 36px, 36px 36px;
+    }
 
-        <header class="dark-header">
-            <div class="profile-area">
-                <img src="sources/logo.png" class="profile-pic-container">
-            </div>
-        </header>
+    /* Film Grain Overlay */
+    .paper-texture {
+      position: relative;
+    }
+    .paper-texture::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1;
+    }
 
-        
-        <div class="titulo">ÁTOMOS DISPERSOS</div>
-        <div class="welcome-title">Juanjo H. Beltrán & Beta Argoytia</div>
+    /* Architectural Purple Blueprint Grid */
+    .blueprint-grid-purple {
+      background-size: 20px 20px;
+      background-image: 
+        linear-gradient(to right, rgba(168, 85, 247, 0.12) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(168, 85, 247, 0.12) 1px, transparent 1px);
+    }
 
+    .blueprint-grid-dark {
+      background-size: 24px 24px;
+      background-image: 
+        linear-gradient(to right, rgba(21, 17, 29, 0.07) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(21, 17, 29, 0.07) 1px, transparent 1px);
+    }
 
-        <main class="links-section">
+    /* Stamps & Archival Badges */
+    .stamp-badge-purple {
+      border: 1.5px solid #8b5cf6;
+      color: #7e22ce;
+      text-transform: uppercase;
+      font-family: 'Courier Prime', monospace;
+      letter-spacing: 0.14em;
+      transform: rotate(-1.5deg);
+      display: inline-block;
+      padding: 0.2rem 0.65rem;
+      border-radius: 3px;
+      background: rgba(139, 92, 246, 0.08);
+      box-shadow: 2px 2px 0px rgba(126, 34, 206, 0.15);
+    }
 
-            
+    .stamp-badge-black {
+      border: 1.5px dashed #15111d;
+      color: #15111d;
+      font-family: 'Courier Prime', monospace;
+      letter-spacing: 0.1em;
+      transform: rotate(1deg);
+      padding: 0.15rem 0.5rem;
+    }
 
-            <a class="link-card">
-                <div class="link-text">
-                    <h3>Biografía</h3>
-                    <p style="margin-bottom: 10px;">
-                        Átomos Dispersos es la colisión creativa de Beta Argoytia
-                        y Juanjo Beltrán. Nacido en 2023 en Monterrey, México,
-                        este proyecto independiente surge de la necesidad de transformar
-                        lo personal en universal. En 2026 publicaron "Mariposas Blancas",
-                        su primer EP original con siete canciones que nos hablan de amar
-                        y perder, el peso de ser y el paso inexorable del tiempo.
-                    </p>
-                    <p>
-                        Con una propuesta que entrelaza letras profundamente emocionales
-                        con una instrumentación meticulosa, el dúo regiomontano logra un
-                        equilibrio entre la vulnerabilidad y la fuerza sonora. Sus composiciones
-                        son un viaje directo a la mente y al corazón, bebiendo de influencias tan
-                        variadas como Radiohead, Mitski, Miss Caffeina, Zoé y The Beatles.
-                    </p>
-                </div>
-            </a>
+    /* Title Font Override */
+    .band-title {
+      font-family: 'Playlist Script', 'Caveat', 'Alex Brush', cursive;
+    }
 
-            
-            <!-- Spotify highligth -->
-            <iframe data-testid="embed-iframe" 
-                style="border-radius:5px" 
-                src="https://open.spotify.com/embed/track/4CCHWi73PlDjZ8itXF4Zti?utm_source=generator" 
-                width="100%" 
-                height="200" 
-                frameBorder="0" 
-                allowfullscreen="" 
-                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                loading="lazy"></iframe>
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 7px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #e8decb;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #6b21a8;
+      border-radius: 2px;
+    }
 
-            <div class="separator-title">Lanzamientos</div>
+    /* Frame Shadow */
+    .vintage-frame {
+      box-shadow: 0 12px 30px -8px rgba(34, 27, 48, 0.22), 0 0 0 1px rgba(21, 17, 29, 0.12);
+    }
 
-            <a href="https://push.fm/fl/kxcmV0Wd" class="link-card">
-                <div class="link-image" style="background-image: url('sources/artwork-mb.jpeg');"></div>
-                <div class="link-text">
-                    <h3>Mariposas Blancas (2026)</h3>
-                    <p>Primer lanzamiento orginal. EP con siete canciones. Disponible en todas la plataformas 🦋🎉</p>
-                </div>
-            </a>
-            
-            <a href="https://soundcloud.com/betabel/sets/four-mitski-covers" class="link-card">
-                <div class="link-image" style="background-image: url('sources/artwork-fmc.jpg');"></div>
-                <div class="link-text">
-                    <h3>Four Mitski Covers (2024)</h3>
-                    <p>Pequeño EP con covers de Mitski, grabados el 17 de enero de 2024 en la sala de Beta, en un pequeño home studio improvisado.</p>
-                </div>
-            </a>
+    /* Link Card Hover Effects */
+    .link-card {
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+    }
+    .link-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px -4px rgba(107, 33, 168, 0.25);
+    }
+    .link-card:active {
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body class="paper-texture min-h-screen relative selection:bg-violetaccent-700 selection:text-white">
 
-            <div class="separator-title">Más Material</div>
-            
-            <a href="https://www.youtube.com/playlist?list=PL1a41viPTvtFXAWVTaFazLlR4n8hpDU1X" class="link-card">
-                <div class="link-image" style="background-image: url('sources/artwork-enVivo.png');"></div>
-                <div class="link-text">
-                    <h3>Presentaciones en Vivo</h3>
-                    <p>Grabaciones en vivo de algunos conciertos desde 2023, tocando música original, covers y demás.</p>
-                </div>
-            </a>
+  <!-- Interactive Canvas Background (Floating Purple Botanical Petals & Subtle Geometry - NO MOUSE EFFECT) -->
+  <canvas id="collageCanvas" class="fixed top-0 left-0 w-full h-full -z-10 pointer-events-none opacity-85"></canvas>
 
-            <a href="https://www.youtube.com/playlist?list=PL1a41viPTvtFCmo7gaOro1wp2IHrSXQ8b" class="link-card">
-                <div class="link-image" style="background-image: url('sources/artwork-eresAgua.jpg');"></div>
-                <div class="link-text">
-                    <h3>Covers en Home Studio</h3>
-                    <p>Algunos covers de Miss Caffeina, Zoé y más, que grabamos y hemos producido semi-profesionalmente de forma independiente.</p>
-                </div>
-            </a>
-
-        </main>
-
-        <footer>
-        <div style="text-align: center; margin-bottom: 30px;">
-            <a href="https://www.instagram.com/dos.atomos.dispersos/" class="fa fa-instagram" style="font-size:20px;"></a>
-            <a href="https://open.spotify.com/intl-es/artist/33EXFci1PtKM9vSgVif0YM?si=V9d6KgpXRsGreD9UuaRpUQ" class="fa fa-spotify" style="font-size:20px;"></a>
-            <a href="https://www.youtube.com/@atomos.dispersos" class="fa fa-youtube" style="font-size:20px;"></a>
-            <a href="https://soundcloud.com/atomos-dispersos" class="fa fa-soundcloud" style="font-size:20px;"></a>
-            <a href="mailto:atomos.dispersos@outlook.com?Subject=Contacto" class="fa fa-paper-plane" style="font-size:20px;"></a>
-        </div>
-        </footer>
-        
+  <!-- Notification Toast -->
+  <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none w-11/12 max-w-sm">
+    <div class="bg-ink-900 text-parchment-100 px-5 py-3 border border-violetaccent-500/40 shadow-2xl font-mono text-xs flex items-center justify-between rounded-md">
+      <div class="flex items-center space-x-2.5">
+        <span id="toastIcon" class="text-violetaccent-400">✦</span>
+        <span id="toastMessage">Enlace copiado al portapapeles</span>
+      </div>
+      <span class="text-[10px] text-violetaccent-400 font-bold">[ OK ]</span>
     </div>
+  </div>
 
+  <!-- Main Container (Optimized for Mobile Instagram Link in Bio) -->
+  <main class="max-w-xl mx-auto px-4 py-6 md:py-10 relative z-10 space-y-8">
+
+    <!-- TOP ARCHIVAL HEADER BAR -->
+    <header class="flex justify-between items-center border-b-2 border-ink-900/15 pb-3">
+      <div class="font-mono text-[10px] text-ink-700 tracking-wider space-y-0.5">
+        <div class="flex items-center space-x-1.5">
+          <span class="w-2 h-2 rounded-full bg-violetaccent-600 inline-block animate-pulse"></span>
+          <span class="font-bold text-violetaccent-800">PROYECTO INDEPENDIENTE</span>
+        </div>
+        <p class="text-[9px] opacity-70">MONTERREY, NUEVO LEÓN, MÉXICO</p>
+      </div>
+
+      <div class="flex items-center space-x-2 font-mono text-xs">
+        <button id="shareBtn" class="px-2.5 py-1 bg-ink-900 text-parchment-100 hover:bg-violetaccent-800 transition-colors flex items-center space-x-1.5 text-[11px] rounded-sm">
+          <i class="fa-solid fa-share-nodes text-[10px]"></i>
+          <span>COMPARTIR</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- BAND TITLE & COLLAGE HERO SECTION -->
+    <section class="text-center space-y-3 pt-1">
+      <!-- Main Title in Playlist Script -->
+      <h1 class="band-title text-6xl sm:text-7xl md:text-8xl text-ink-900 tracking-wide font-normal leading-tight drop-shadow-sm my-1" style="margin-top: 25px; margin-bottom: 40px;">
+        Átomos Dispersos
+      </h1>
+
+    </section>
+
+    <!-- CORE "LINK IN BIO" PLATFORMS SECTION WITH OFFICIAL ICONS -->
+    <section class="space-y-3">
+      <div class="flex items-center justify-between border-b-2 border-ink-900 pb-2">
+        <h3 class="text-xl font-serif font-bold text-ink-900 tracking-wide flex items-center gap-2">
+          
+          Plataformas Digitales
+        </h3>
+        <span class="font-mono text-[10px] bg-violetaccent-800 text-parchment-100 px-2 py-0.5 rounded-sm font-bold">
+          ENLACES DIRECTOS
+        </span>
+      </div>
+
+      <div class="space-y-2.5">
+
+        <!-- 1. SPOTIFY -->
+        <a href="https://open.spotify.com/intl-es/artist/33EXFci1PtKM9vSgVif0YM" target="_blank" rel="noopener noreferrer" class="link-card p-3.5 bg-parchment-100 border-2 border-ink-900 flex items-center justify-between group vintage-frame rounded-sm">
+          <div class="flex items-center space-x-3.5">
+            <div class="w-11 h-11 bg-ink-900 text-[#1DB954] flex items-center justify-center text-2xl group-hover:bg-violetaccent-800 transition-colors rounded-sm border border-ink-700">
+              <i class="fa-brands fa-spotify"></i>
+            </div>
+            <div>
+              <div class="flex items-center space-x-2">
+                <h4 class="font-serif font-bold text-lg text-ink-900 group-hover:text-violetaccent-800 transition-colors">
+                  Spotify
+                </h4>
+                <span class="text-[9px] font-mono bg-violetaccent-800 text-parchment-50 px-1.5 py-0.2 rounded">ESTUDIO</span>
+              </div>
+              <p class="font-mono text-[11px] text-ink-700">Nuestro perfil principal</p>
+            </div>
+          </div>
+          <span class="font-mono text-xs font-bold text-ink-900 group-hover:text-violetaccent-700 group-hover:translate-x-1 transition-transform flex items-center gap-1">
+            ESCUCHAR <i class="fa-solid fa-arrow-right text-[10px]"></i>
+          </span>
+        </a>
+
+
+        <!-- 3. YOUTUBE MUSIC / YOUTUBE -->
+        <a href="https://music.youtube.com/@atomos.dispersos" target="_blank" rel="noopener noreferrer" class="link-card p-3.5 bg-parchment-100 border-2 border-ink-900 flex items-center justify-between group vintage-frame rounded-sm">
+          <div class="flex items-center space-x-3.5">
+            <div class="w-11 h-11 bg-ink-900 text-[#FF0000] flex items-center justify-center text-xl group-hover:bg-violetaccent-800 transition-colors rounded-sm border border-ink-700">
+              <i class="fa-brands fa-youtube"></i>
+            </div>
+            <div>
+              <div class="flex items-center space-x-2">
+                <h4 class="font-serif font-bold text-lg text-ink-900 group-hover:text-violetaccent-800 transition-colors">
+                YouTube
+              </h4>
+                <span class="text-[9px] font-mono bg-violetaccent-800 text-parchment-50 px-1.5 py-0.2 rounded">EN VIVO</span>
+              </div>
+              <p class="font-mono text-[11px] text-ink-700">Discografía, covers y conciertos</p>
+            </div>
+          </div>
+          <span class="font-mono text-xs font-bold text-ink-900 group-hover:text-violetaccent-700 group-hover:translate-x-1 transition-transform flex items-center gap-1">
+            VER <i class="fa-solid fa-arrow-right text-[10px]"></i>
+          </span>
+        </a>
+
+
+        <!-- 2. APPLE MUSIC -->
+        <a href="https://music.apple.com/mx/artist/átomos-dispersos/1876264026" target="_blank" rel="noopener noreferrer" class="link-card p-3.5 bg-parchment-100 border-2 border-ink-900 flex items-center justify-between group vintage-frame rounded-sm">
+          <div class="flex items-center space-x-3.5">
+            <div class="w-11 h-11 bg-ink-900 text-parchment-100 flex items-center justify-center text-2xl group-hover:bg-violetaccent-800 group-hover:text-violetaccent-300 transition-colors rounded-sm border border-ink-700">
+              <i class="fa-brands fa-apple"></i>
+            </div>
+            <div>
+              <h4 class="font-serif font-bold text-lg text-ink-900 group-hover:text-violetaccent-800 transition-colors">
+                Apple Music
+              </h4>
+              <p class="font-mono text-[11px] text-ink-700">Toda nuestra discografía</p>
+            </div>
+          </div>
+          <span class="font-mono text-xs font-bold text-ink-900 group-hover:text-violetaccent-700 group-hover:translate-x-1 transition-transform flex items-center gap-1">
+            ESCUCHAR <i class="fa-solid fa-arrow-right text-[10px]"></i>
+          </span>
+        </a>
+
+        <!-- 4. BANDCAMP 
+        <a href="https://bandcamp.com" target="_blank" rel="noopener noreferrer" class="link-card p-3.5 bg-parchment-100 border-2 border-ink-900 flex items-center justify-between group vintage-frame rounded-sm">
+          <div class="flex items-center space-x-3.5">
+            <div class="w-11 h-11 bg-ink-900 text-[#629aa9] flex items-center justify-center text-xl group-hover:bg-violetaccent-800 transition-colors rounded-sm border border-ink-700">
+              <i class="fa-brands fa-bandcamp"></i>
+            </div>
+            <div>
+              <div class="flex items-center space-x-2">
+                <h4 class="font-serif font-bold text-lg text-ink-900 group-hover:text-violetaccent-800 transition-colors">
+                  Bandcamp
+                </h4>
+                <span class="text-[9px] font-mono bg-violetaccent-800 text-parchment-50 px-1.5 py-0.2 rounded">SOPORTE DIRECTO</span>
+              </div>
+              <p class="font-mono text-[11px] text-ink-700">Compra Digital & Edición Física en Vinilo</p>
+            </div>
+          </div>
+          <span class="font-mono text-xs font-bold text-violetaccent-800 group-hover:translate-x-1 transition-transform flex items-center gap-1">
+            APOYAR <i class="fa-solid fa-arrow-right text-[10px]"></i>
+          </span>
+        </a>-->
+
+        <!-- 5. AMAZON MUSIC 
+        <a href="https://music.amazon.com" target="_blank" rel="noopener noreferrer" class="link-card p-3.5 bg-parchment-100 border-2 border-ink-900 flex items-center justify-between group vintage-frame rounded-sm">
+          <div class="flex items-center space-x-3.5">
+            <div class="w-11 h-11 bg-ink-900 text-[#FF9900] flex items-center justify-center text-xl group-hover:bg-violetaccent-800 transition-colors rounded-sm border border-ink-700">
+              <i class="fa-brands fa-amazon"></i>
+            </div>
+            <div>
+              <h4 class="font-serif font-bold text-lg text-ink-900 group-hover:text-violetaccent-800 transition-colors">
+                Amazon Music
+              </h4>
+              <p class="font-mono text-[11px] text-ink-700">Toda nuestra discografía.</p>
+            </div>
+          </div>
+          <span class="font-mono text-xs font-bold text-ink-900 group-hover:text-violetaccent-700 group-hover:translate-x-1 transition-transform flex items-center gap-1">
+            ABRIR <i class="fa-solid fa-arrow-right text-[10px]"></i>
+          </span>
+        </a>-->
+
+        <!-- 6. DEEZER -->
+        <a href="https://www.deezer.com/mx/artist/372511481" target="_blank" rel="noopener noreferrer" class="link-card p-3.5 bg-parchment-100 border-2 border-ink-900 flex items-center justify-between group vintage-frame rounded-sm">
+          <div class="flex items-center space-x-3.5">
+            <div class="w-11 h-11 bg-ink-900 text-[#a855f7] flex items-center justify-center text-xl group-hover:bg-violetaccent-800 transition-colors rounded-sm border border-ink-700">
+              <i class="fa-brands fa-deezer"></i>
+            </div>
+            <div>
+              <h4 class="font-serif font-bold text-lg text-ink-900 group-hover:text-violetaccent-800 transition-colors">
+                Deezer
+              </h4>
+              <p class="font-mono text-[11px] text-ink-700">Toda nuestra discografía</p>
+            </div>
+          </div>
+          <span class="font-mono text-xs font-bold text-ink-900 group-hover:text-violetaccent-700 group-hover:translate-x-1 transition-transform flex items-center gap-1">
+            ESCUCHAR <i class="fa-solid fa-arrow-right text-[10px]"></i>
+          </span>
+        </a>
+
+        <!-- 7. TIDAL -->
+        <a href="https://tidal.com/artist/74280541" target="_blank" rel="noopener noreferrer" class="link-card p-3.5 bg-parchment-100 border-2 border-ink-900 flex items-center justify-between group vintage-frame rounded-sm">
+          <div class="flex items-center space-x-3.5">
+            <div class="w-11 h-11 bg-ink-900 text-parchment-100 flex items-center justify-center text-2xl group-hover:bg-violetaccent-800 group-hover:text-violetaccent-300 transition-colors rounded-sm border border-ink-700">
+
+
+              <!-- Tidal Custom SVG Icon -->
+              <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20">
+                <path d="M12 7.5L7.5 12L12 16.5L16.5 12L12 7.5ZM4.5 4.5L0 9L4.5 13.5L9 9L4.5 4.5ZM19.5 4.5L15 9L19.5 13.5L24 9L19.5 4.5ZM12 16.5L7.5 21L12 25.5L16.5 21L12 16.5Z" transform="scale(0.7) translate(3, 0)"/>
+              </svg>
+
+
+
+            </div>
+            <div>
+              <h4 class="font-serif font-bold text-lg text-ink-900 group-hover:text-violetaccent-800 transition-colors">
+                TIDAL
+              </h4>
+              <p class="font-mono text-[11px] text-ink-700">Toda nuestra discografía</p>
+            </div>
+          </div>
+          <span class="font-mono text-xs font-bold text-ink-900 group-hover:text-violetaccent-700 group-hover:translate-x-1 transition-transform flex items-center gap-1">
+            ESCUCHAR <i class="fa-solid fa-arrow-right text-[10px]"></i>
+          </span>
+        </a>
+
+        <!-- 7. SOUNDCLOUD -->
+        <a href="https://soundcloud.com/atomos-dispersos" target="_blank" rel="noopener noreferrer" class="link-card p-3.5 bg-parchment-100 border-2 border-ink-900 flex items-center justify-between group vintage-frame rounded-sm">
+          <div class="flex items-center space-x-3.5">
+            <div class="w-11 h-11 bg-ink-900 text-[#ff5500] flex items-center justify-center text-xl group-hover:bg-violetaccent-800 transition-colors rounded-sm border border-ink-700">
+              <i class="fa-brands fa-soundcloud"></i>
+            </div>
+            <div>
+              <h4 class="font-serif font-bold text-lg text-ink-900 group-hover:text-violetaccent-800 transition-colors">
+                SoundCloud
+              </h4>
+              <p class="font-mono text-[11px] text-ink-700">Discografía, covers y experimentos</p>
+            </div>
+          </div>
+          <span class="font-mono text-xs font-bold text-ink-900 group-hover:text-violetaccent-700 group-hover:translate-x-1 transition-transform flex items-center gap-1">
+            ESCUCHAR <i class="fa-solid fa-arrow-right text-[10px]"></i>
+          </span>
+        </a>
+
+      </div>
+    </section>
+
+
+
+
+
+
+    <!-- SOCIAL MEDIA DIRECT LINKS -->
+    <section class="space-y-2 pt-2">
+      <div class="font-mono text-[10px] text-ink-700 uppercase tracking-widest text-center">
+        [ REDES SOCIALES Y COMUNIDAD ]
+      </div>
+      <div class="grid grid-cols-2 gap-2 font-mono text-xs">
+        <a href="https://www.instagram.com/dos.atomos.dispersos/" target="_blank" rel="noopener noreferrer" class="p-2.5 bg-parchment-100 border border-ink-900 hover:bg-violetaccent-800 hover:text-parchment-100 transition-colors flex items-center justify-center space-x-2 rounded-sm shadow-sm">
+          <i class="fa-brands fa-instagram text-base"></i>
+          <span>INSTAGRAM</span>
+        </a>
+        <a href="https://www.youtube.com/@atomos.dispersos" target="_blank" rel="noopener noreferrer" class="p-2.5 bg-parchment-100 border border-ink-900 hover:bg-violetaccent-800 hover:text-parchment-100 transition-colors flex items-center justify-center space-x-2 rounded-sm shadow-sm">
+          <i class="fa-brands fa-youtube text-base"></i>
+          <span>YOUTUBE</span>
+        </a>
+      </div>
+    </section>
+
+
+
+    
+
+    <!-- ACCORDION BIOGRAPHY & MANIFESTO -->
+    <section class="bg-parchment-100 border-2 border-ink-900 p-5 vintage-frame rounded-sm space-y-3">
+      <button id="bioToggleBtn" class="w-full flex items-center justify-between text-left group">
+        <div class="space-y-0.5">
+          <span class="stamp-badge-black text-[9px]">SOBRE NOSOTROS</span>
+          <h3 class="text-xl font-serif font-bold text-ink-900 group-hover:text-violetaccent-800 transition-colors flex items-center gap-2">
+            <!-- <i class="fa-solid fa-book-bookmark text-violetaccent-700 text-sm"></i> -->
+            Biografía del Proyecto
+          </h3>
+        </div>
+
+        <div class="w-7 h-7 border border-ink-900 flex items-center justify-center font-mono text-xs text-ink-900 group-hover:bg-ink-900 group-hover:text-parchment-100 transition-colors rounded-sm">
+          <span id="bioArrowIcon">↓</span>
+        </div>
+      </button>
+
+      <!-- Accordion Body -->
+      <div id="bioContent" class="hidden space-y-3 pt-3 border-t border-ink-900/20 text-ink-900 font-serif leading-relaxed text-sm" style="text-align: justify;">
+        <p class="first-letter:text-3xl first-letter:font-bold first-letter:float-left first-letter:mr-2 first-letter:text-violetaccent-800 font-serif">
+          <strong>Átomos Dispersos</strong> es la colisión creativa de <em>Beta Argoytia</em> y <em>Juanjo Beltrán</em>. 
+          
+          Nacido en 2023 en Monterrey, México, este proyecto independiente surge 
+          de la necesidad de transformar lo personal en universal. 
+        
+          En 2026 publican <strong>"Mariposas Blancas"</strong>, su primer EP original 
+          con siete canciones que nos hablan de amar y perder, el peso de ser y el 
+          paso inexorable del tiempo.
+        </p>
+
+        <p>
+          Con una propuesta que entrelaza letras profundamente emocionales con
+          una instrumentación meticulosa, el dúo regiomontano logra un equilibrio
+          entre la vulnerabilidad y la fuerza sonora.
+        </p>
+
+        <div class="p-3 bg-parchment-200 border-l-4 border-violetaccent-700 font-mono text-[11px] text-ink-900 space-y-1 rounded-r-sm">
+          <div class="font-bold uppercase tracking-wider text-violetaccent-800 flex items-center gap-1.5">
+            <i class="fa-solid fa-sliders text-xs"></i>
+            <span>INFLUENCIAS Y REFERENTES</span>
+          </div>
+          <p>Julieta Venegas • Zoé • Caifanes • Miss Caffeina • Mitski • The Beatles</p>
+        </div>
+
+       
+      </div>
+    </section>
+
+    <!-- NEWSLETTER FORM ("GACETA DE ARCHIVO") 
+    <section class="bg-ink-900 text-parchment-100 p-5 border-2 border-ink-900 blueprint-grid-purple vintage-frame text-center space-y-3 rounded-sm">
+      <div class="max-w-md mx-auto space-y-1">
+        <span class="font-mono text-[9px] text-violetaccent-400 uppercase tracking-widest">BOLETÍN DE ARCHIVO</span>
+        <h3 class="text-2xl font-serif font-bold text-parchment-50">Gaceta Impresa Digital</h3>
+        <p class="font-mono text-[11px] text-parchment-300">
+          Recibe cartas de laboratorio, invitaciones a shows íntimos y avisos de ediciones limitadas.
+        </p>
+      </div>
+
+      <form id="newsletterForm" class="flex flex-col sm:flex-row gap-2 max-w-md mx-auto pt-1">
+        <input id="emailInput" type="email" placeholder="tu-correo@ejemplo.com" required class="flex-1 bg-parchment-100 text-ink-900 border border-parchment-300 px-3.5 py-2 font-mono text-xs focus:outline-none focus:ring-2 focus:ring-violetaccent-500 rounded-sm">
+        <button type="submit" class="px-5 py-2 bg-violetaccent-700 hover:bg-violetaccent-600 text-parchment-50 font-mono text-xs font-bold uppercase transition-colors border border-violetaccent-400 rounded-sm">
+          SUSCRIBIR
+        </button>
+      </form>
+    </section>-->
+
+    <!-- FOOTER & BOOKING CONTACT -->
+    <footer class="pt-4 border-t-2 border-ink-900/15 text-center space-y-3 pb-6">
+      <div>
+        <a href="mailto:atomos.dispersos@outlook.com" class="inline-flex items-center gap-1.5 font-mono text-xs text-ink-800 hover:text-violetaccent-800 underline underline-offset-4">
+          <i class="fa-regular fa-envelope"></i>
+          <span>CONTACTO atomos.dispersos@outlook.com</span>
+        </a>
+      </div>
+
+      <p class="font-mono text-[9px] text-ink-600">
+        © 2026 ÁTOMOS DISPERSOS • TODOS LOS DERECHOS RESERVADOS.
+      </p>
+    </footer>
+
+  </main>
+
+  <!-- JAVASCRIPT LOGIC & CANVAS RENDERERS -->
+  <script>
+    const collageCanvas = document.getElementById('collageCanvas');
+    const cCtx = collageCanvas.getContext('2d');
+
+    let cWidth = collageCanvas.width = window.innerWidth;
+    let cHeight = collageCanvas.height = window.innerHeight;
+
+    window.addEventListener('resize', () => {
+      cWidth = collageCanvas.width = window.innerWidth;
+      cHeight = collageCanvas.height = window.innerHeight;
+    });
+
+    class PurplePetal {
+      constructor() {
+        this.x = Math.random() * cWidth;
+        this.y = Math.random() * cHeight;
+        this.vy = Math.random() * 0.35 + 0.15;
+        this.vx = (Math.random() - 0.5) * 0.25;
+        this.size = Math.random() * 5 + 3.5;
+        this.angle = Math.random() * Math.PI * 2;
+        this.color = Math.random() > 0.5 ? '#8b5cf6' : (Math.random() > 0.5 ? '#c084fc' : '#f5efe3');
+      }
+
+      update() {
+        this.y += this.vy;
+        this.x += Math.sin(this.y * 0.008) * 0.3 + this.vx;
+        this.angle += 0.008;
+
+        if (this.y > cHeight + 20) {
+          this.y = -20;
+          this.x = Math.random() * cWidth;
+        }
+      }
+
+      draw() {
+        cCtx.save();
+        cCtx.translate(this.x, this.y);
+        cCtx.rotate(this.angle);
+        cCtx.fillStyle = this.color;
+        cCtx.strokeStyle = '#15111d';
+        cCtx.lineWidth = 0.4;
+
+        cCtx.beginPath();
+        cCtx.ellipse(0, 0, this.size, this.size / 2.2, 0, 0, Math.PI * 2);
+        cCtx.fill();
+        cCtx.stroke();
+        cCtx.restore();
+      }
+    }
+
+    const petals = Array.from({ length: 22 }, () => new PurplePetal());
+
+    function animateCollageCanvas() {
+      cCtx.clearRect(0, 0, cWidth, cHeight);
+
+      // Subtle architectural grid background
+      cCtx.strokeStyle = 'rgba(107, 33, 168, 0.035)';
+      cCtx.lineWidth = 1;
+
+      for (let x = 0; x < cWidth; x += 80) {
+        cCtx.beginPath();
+        cCtx.moveTo(x, 0);
+        cCtx.lineTo(x, cHeight);
+        cCtx.stroke();
+      }
+
+      // Render floating purple petals
+      petals.forEach(p => {
+        p.update();
+        p.draw();
+      });
+
+      requestAnimationFrame(animateCollageCanvas);
+    }
+    animateCollageCanvas();
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      document.getElementById('toastMessage').textContent = msg;
+
+      toast.classList.remove('translate-y-20', 'opacity-0');
+      toast.classList.add('translate-y-0', 'opacity-100');
+
+      setTimeout(() => {
+        toast.classList.remove('translate-y-0', 'opacity-100');
+        toast.classList.add('translate-y-20', 'opacity-0');
+      }, 2800);
+    }
+
+    // Bio Toggle
+    const bioToggleBtn = document.getElementById('bioToggleBtn');
+    const bioContent = document.getElementById('bioContent');
+    const bioArrowIcon = document.getElementById('bioArrowIcon');
+
+    bioToggleBtn.onclick = () => {
+      const isHidden = bioContent.classList.contains('hidden');
+      if (isHidden) {
+        bioContent.classList.remove('hidden');
+        bioArrowIcon.textContent = '↑';
+      } else {
+        bioContent.classList.add('hidden');
+        bioArrowIcon.textContent = '↓';
+      }
+    };
+
+    // Share Button
+    document.getElementById('shareBtn').onclick = () => {
+      const shareData = {
+        title: 'Átomos Dispersos • Monterrey, MX',
+        text: 'Perfil Oficial & Enlaces de Átomos Dispersos',
+        url: window.location.href,
+      };
+
+      if (navigator.share) {
+        navigator.share(shareData).catch(() => {});
+      } else {
+        const input = document.createElement('input');
+        input.value = window.location.href;
+        document.body.appendChild(input);
+        input.select();
+        document.execCommand('copy');
+        document.body.removeChild(input);
+        showToast('Enlace copiado al portapapeles.');
+      }
+    };
+
+    // Newsletter Form
+    document.getElementById('newsletterForm').onsubmit = (e) => {
+      e.preventDefault();
+      const email = document.getElementById('emailInput').value;
+      if (email) {
+        showToast('Suscripción registrada en la Gaceta de Archivo');
+        document.getElementById('emailInput').value = '';
+      }
+    };
+  </script>
 </body>
 </html>
